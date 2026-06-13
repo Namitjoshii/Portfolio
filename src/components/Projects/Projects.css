@@ -1,0 +1,273 @@
+.projects-layout {
+  display: grid;
+  grid-template-columns: 1fr 200px;
+  gap: 32px;
+  align-items: start;
+}
+
+.projects-cards {
+  display: flex;
+  flex-direction: column;
+}
+
+.project-card {
+  position: relative;
+  padding: 28px 24px;
+  background: var(--bg-alt);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  margin-bottom: 16px;
+  transition: border-color 0.25s;
+  overflow: hidden;
+}
+
+.project-card::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 3px;
+  background: transparent;
+  transition: background 0.25s;
+  border-radius: 8px 0 0 8px;
+}
+
+.project-card:hover {
+  border-color: #2e2e2e;
+  background: #131313;
+}
+
+.project-card:hover::before {
+  background: var(--accent);
+}
+
+.project-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.project-type {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: var(--accent);
+  opacity: 0.7;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-bottom: 6px;
+}
+
+.project-name {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--text);
+  letter-spacing: -0.01em;
+}
+
+.project-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--muted);
+  text-decoration: none;
+  border: 1px solid var(--border);
+  padding: 4px 10px;
+  border-radius: 4px;
+  transition: all 0.2s;
+}
+
+.project-link:hover {
+  color: var(--accent);
+  border-color: var(--accent);
+}
+
+.project-desc {
+  font-size: 13.5px;
+  color: var(--muted);
+  line-height: 1.65;
+  margin-bottom: 16px;
+}
+
+/* ── PHONE MOCKUP ── */
+.phone-mockup-wrap {
+  position: sticky;
+  top: 80px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+
+.phone-frame {
+  width: 160px;
+  height: 300px;
+  background: #111;
+  border: 2px solid #2a2a2a;
+  border-radius: 28px;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 0 0 1px #1a1a1a, 0 24px 48px rgba(0, 0, 0, 0.6);
+}
+
+.phone-notch {
+  width: 60px;
+  height: 6px;
+  background: #1a1a1a;
+  border-radius: 3px;
+  margin: 12px auto 0;
+}
+
+.phone-screen {
+  padding: 16px 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.phone-app-name {
+  font-family: var(--font-display);
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--text);
+  letter-spacing: -0.01em;
+}
+
+.phone-now-playing {
+  background: #1a1a1a;
+  border-radius: 8px;
+  padding: 10px;
+  border: 1px solid #222;
+}
+
+.phone-track-label {
+  font-family: var(--font-mono);
+  font-size: 8px;
+  color: var(--accent);
+  letter-spacing: 0.1em;
+  margin-bottom: 4px;
+}
+
+.phone-track-name {
+  font-size: 10px;
+  font-weight: 600;
+  color: var(--text);
+  margin-bottom: 2px;
+}
+
+.phone-track-artist {
+  font-size: 9px;
+  color: var(--muted);
+}
+
+.phone-progress {
+  margin-top: 8px;
+  height: 2px;
+  background: #2a2a2a;
+  border-radius: 1px;
+  overflow: hidden;
+}
+
+.phone-progress-bar {
+  height: 100%;
+  width: 40%;
+  background: var(--accent);
+  border-radius: 1px;
+  animation: progress 4s linear infinite;
+}
+
+@keyframes progress {
+  from { width: 10%; }
+  to { width: 90%; }
+}
+
+.phone-controls {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  margin-top: 4px;
+}
+
+.phone-ctrl {
+  width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--muted);
+  font-size: 10px;
+}
+
+.phone-ctrl.play {
+  width: 28px;
+  height: 28px;
+  background: var(--accent);
+  border-radius: 50%;
+  color: #000;
+  font-size: 11px;
+}
+
+.phone-queue {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.phone-queue-label {
+  font-family: var(--font-mono);
+  font-size: 8px;
+  color: var(--muted);
+  letter-spacing: 0.08em;
+  opacity: 0.6;
+}
+
+.phone-queue-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.phone-queue-dot {
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: #2a2a2a;
+  flex-shrink: 0;
+}
+
+.phone-queue-item.active .phone-queue-dot {
+  background: var(--accent);
+}
+
+.phone-queue-text {
+  font-size: 8.5px;
+  color: var(--muted);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.phone-queue-item.active .phone-queue-text {
+  color: var(--text);
+}
+
+.phone-caption {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: var(--muted);
+  text-align: center;
+  letter-spacing: 0.04em;
+  opacity: 0.6;
+}
+
+@media (max-width: 700px) {
+  .projects-layout {
+    grid-template-columns: 1fr;
+  }
+  .phone-mockup-wrap {
+    display: none;
+  }
+}

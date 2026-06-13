@@ -1,0 +1,130 @@
+.exp-card {
+  position: relative;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  margin-bottom: 12px;
+  overflow: hidden;
+  cursor: default;
+  background: var(--bg-alt);
+  transition: border-color 0.25s;
+}
+
+.exp-card:hover {
+  border-color: #2e2e2e;
+}
+
+.exp-front {
+  padding: 24px 28px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+  transition: opacity 0.2s, transform 0.2s;
+}
+
+.exp-card:hover .exp-front {
+  opacity: 0;
+  transform: translateY(-6px);
+  pointer-events: none;
+  position: absolute;
+  width: 100%;
+}
+
+.exp-back {
+  padding: 24px 28px;
+  opacity: 0;
+  transform: translateY(10px);
+  transition: opacity 0.25s, transform 0.25s;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  pointer-events: none;
+}
+
+.exp-card:hover .exp-back {
+  opacity: 1;
+  transform: translateY(0);
+  position: relative;
+  pointer-events: auto;
+}
+
+.exp-spacer {
+  padding: 24px 28px;
+  visibility: hidden;
+  pointer-events: none;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.exp-card:hover .exp-spacer {
+  display: none;
+}
+
+.exp-front-left {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.exp-role {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--text);
+  letter-spacing: -0.01em;
+}
+
+.exp-company {
+  font-size: 13px;
+  color: var(--muted);
+}
+
+.exp-period {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--muted);
+  white-space: nowrap;
+}
+
+.exp-hint {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: var(--muted);
+  opacity: 0.5;
+  letter-spacing: 0.05em;
+  margin-top: 2px;
+}
+
+.exp-back-role {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--accent);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-bottom: 12px;
+}
+
+.exp-bullets {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+}
+
+.exp-bullets li {
+  font-size: 13px;
+  color: var(--muted);
+  line-height: 1.65;
+  padding-left: 14px;
+  position: relative;
+}
+
+.exp-bullets li::before {
+  content: '–';
+  position: absolute;
+  left: 0;
+  color: var(--accent);
+  opacity: 0.6;
+}
