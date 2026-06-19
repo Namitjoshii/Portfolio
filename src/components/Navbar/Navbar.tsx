@@ -1,5 +1,5 @@
 import { NAV_LINKS } from '../../data/portfolio';
-import './Navbar.css';
+import '../Navbar/Navbar.css';
 
 export default function Navbar() {
   return (

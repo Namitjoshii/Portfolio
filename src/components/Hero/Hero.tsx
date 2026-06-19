@@ -8,7 +8,7 @@ export default function Hero() {
         <p className="hero-eyebrow">{HERO.eyebrow}</p>
         <h1 className="hero-name">{HERO.name}</h1>
         <p className="hero-tagline">
-          Full-stack engineer. <span>I own the product</span> —<br />
+          Full-stack engineer. <span>I own the product</span> <br />
           from first commit to <span>production.</span>
         </p>
         <div className="hero-links">

@@ -62,6 +62,7 @@ export const PROJECTS = [
     type: 'Full-stack · AI',
     name: 'Interview – AI Analyser',
     link: { label: 'GitHub ↗', href: '#' },
+    demoLink: { label: 'Demo ↗', href: 'https://interview-ai-five-wheat.vercel.app', target: '_blank' },
     desc: 'Full-stack AI platform that matches resumes to JDs, identifies skill gaps, and generates structured interview reports using Gemini API with Zod-validated outputs. Puppeteer-powered HTML-to-PDF generation pipeline. End-to-end system design — API, schema modeling, frontend integration, deployment.',
     stack: ['Node.js', 'Express', 'MongoDB', 'React', 'Gemini API', 'Puppeteer', 'Zod'],
   },
