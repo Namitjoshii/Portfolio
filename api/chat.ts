@@ -5,6 +5,10 @@
 // prefixed with VITE_ and never be imported by anything inside /src, because
 // anything in /src ends up inside the public JavaScript bundle.
 
+// Vercel's build does not load Node's type definitions, so we describe the
+// one thing we use from Node (environment variables) ourselves.
+declare const process: { env: Record<string, string | undefined> };
+
 interface ApiRequest {
   method?: string;
   body?: unknown;
