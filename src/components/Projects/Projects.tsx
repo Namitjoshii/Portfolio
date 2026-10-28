@@ -75,7 +75,10 @@ export default function Projects() {
       <div className="container">
         <div className="section-header">
           <p className="section-label">PROJECTS</p>
-          <span className="section-count">3 shipped</span>
+          <span className="section-count">
+            {PROJECTS.filter((p) => !p.status).length} shipped ·{' '}
+            {PROJECTS.filter((p) => p.status).length} in development
+          </span>
         </div>
 
         <div className="projects-layout">
@@ -95,18 +98,24 @@ export default function Projects() {
                   </div>
 
                   <div className="project-links">
-                    <a
-                      href={proj.link.href}
-                      className="project-link"
-                      target={proj.link.target}
-                      rel={
-                        proj.link.target === '_blank'
-                          ? 'noreferrer'
-                          : undefined
-                      }
-                    >
-                      {proj.link.label}
-                    </a>
+                    {proj.status && (
+                      <span className="project-status">{proj.status}</span>
+                    )}
+
+                    {proj.link && (
+                      <a
+                        href={proj.link.href}
+                        className="project-link"
+                        target={proj.link.target}
+                        rel={
+                          proj.link.target === '_blank'
+                            ? 'noreferrer'
+                            : undefined
+                        }
+                      >
+                        {proj.link.label}
+                      </a>
+                    )}
 
                     {proj.demoLink && (
                       <a

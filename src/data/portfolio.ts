@@ -57,7 +57,30 @@ export const EXPERIENCES = [
   },
 ];
 
-export const PROJECTS = [
+export interface ProjectLink {
+  label: string;
+  href: string;
+  target?: string;
+}
+
+export interface Project {
+  type: string;
+  name: string;
+  link?: ProjectLink;
+  demoLink?: ProjectLink;
+  status?: string;
+  desc: string;
+  stack: string[];
+}
+
+export const PROJECTS: Project[] = [
+  {
+    type: 'Mobile · AI · Freelance',
+    name: 'AI Nutrition & Meal Planning App',
+    status: 'In development · Private',
+    desc: 'AI-powered nutrition and meal-planning app for home cooks, built Android-first. I own the product design, user flow and architecture decisions. Google sign-in through AWS Cognito, a serverless Node.js + TypeScript backend on AWS Lambda with PostgreSQL, and an LLM-powered chat that generates personalised recipes. Video generation runs asynchronously through a queue, so the app never waits on it.',
+    stack: ['React Native', 'Expo', 'TypeScript', 'Node.js', 'AWS Lambda', 'PostgreSQL', 'AWS Cognito', 'AWS SQS', 'LLM APIs'],
+  },
   {
     type: 'Full-stack · AI',
     name: 'Interview – AI Analyser',

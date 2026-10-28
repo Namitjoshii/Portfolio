@@ -85,6 +85,19 @@
   border-color: var(--accent);
 }
 
+.project-status {
+  display: inline-flex;
+  align-items: center;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--accent);
+  background: var(--accent-dim);
+  border: 1px solid var(--accent);
+  padding: 4px 10px;
+  border-radius: 4px;
+  white-space: nowrap;
+}
+
 .project-desc {
   font-size: 13.5px;
   color: var(--muted);
