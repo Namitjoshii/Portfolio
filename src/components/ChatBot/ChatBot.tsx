@@ -13,19 +13,31 @@ const SUGGESTIONS = [
   'Is he open to work?',
 ];
 
-const FAQ_RESPONSES: Record<string, string> = {
-  'Why should I hire him?':
-    'Namit is a Full Stack Developer with strong DSA skills, hands-on project experience, and a proven ability to learn and ship products quickly. He is actively looking for internship opportunities.',
+const FALLBACK_REPLY =
+  "Sorry, I can't answer right now. You can reach Namit directly at namitjoshi11@gmail.com.";
 
-  'Tell me about Mume':
-    'Mume is a project built by Namit focused on solving real-world problems using modern web technologies and clean user experience.',
+// Asks our own server (api/chat.ts), which talks to Gemini. The secret key
+// never reaches the browser.
+async function askAssistant(history: Message[]): Promise<string> {
+  const response = await fetch('/api/chat', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      messages: history
+        .filter((m) => m.role === 'user' || m.role === 'bot')
+        .map((m) => ({ role: m.role, text: m.text })),
+    }),
+  });
 
-  "What's his tech stack?":
-    'React, TypeScript, JavaScript, Node.js, Express.js, MongoDB, Docker, Git, GitHub, REST APIs and Data Structures & Algorithms.',
+  const data = (await response.json().catch(() => null)) as {
+    reply?: string;
+    error?: string;
+  } | null;
 
-  'Is he open to work?':
-    'Yes 🚀 Namit is actively looking for Software Development and Full Stack Engineering internship opportunities.',
-};
+  if (response.ok && data?.reply) return data.reply;
+  if (response.status === 429 && data?.error) return data.error;
+  throw new Error(data?.error ?? `Request failed (${response.status})`);
+}
 
 export default function ChatBot() {
   const [isOpen, setIsOpen] = useState(false);
@@ -64,37 +76,25 @@ export default function ChatBot() {
     setInput('');
     setShowSuggestions(false);
 
-    setMessages((prev) => [...prev, { role: 'user', text: msg }]);
+    const userMessage: Message = { role: 'user', text: msg };
+    const history = [...messages, userMessage];
 
+    setMessages([...history, { role: 'typing', text: '● ● ●' }]);
     setIsLoading(true);
 
+    let reply: string;
+    try {
+      reply = await askAssistant(history);
+    } catch (err) {
+      console.error(err);
+      reply = FALLBACK_REPLY;
+    }
+
     setMessages((prev) => [
-      ...prev,
-      {
-        role: 'typing',
-        text: '● ● ●',
-      },
+      ...prev.filter((m) => m.role !== 'typing'),
+      { role: 'bot', text: reply },
     ]);
-
-    setTimeout(() => {
-      const reply =
-        FAQ_RESPONSES[msg] ||
-        `🚧 AI Portfolio Assistant is currently under development.
-
-You can still explore my projects, skills and experience through the portfolio.
-
-📧 Contact:
-namitjoshi11@gmail.com
-
-Full AI support coming soon 🚀`;
-
-      setMessages((prev) => [
-        ...prev.filter((m) => m.role !== 'typing'),
-        { role: 'bot', text: reply },
-      ]);
-
-      setIsLoading(false);
-    }, 800);
+    setIsLoading(false);
   }
 
   return (
@@ -117,7 +117,7 @@ Full AI support coming soon 🚀`;
             </p>
 
             <p className="chat-header-sub">
-              Portfolio Assistant · AI Version Coming Soon 🚀
+              Portfolio Assistant · Powered by Gemini
             </p>
           </div>
 
