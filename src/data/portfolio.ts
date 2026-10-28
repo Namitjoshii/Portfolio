@@ -61,7 +61,7 @@ export const PROJECTS = [
   {
     type: 'Full-stack · AI',
     name: 'Interview – AI Analyser',
-    link: { label: 'GitHub ↗', href: '#' },
+    link: { label: 'GitHub ↗', href: 'https://github.com/Namitjoshii/interview-ai', target: '_blank' },
     demoLink: { label: 'Demo ↗', href: 'https://interview-ai-five-wheat.vercel.app', target: '_blank' },
     desc: 'Full-stack AI platform that matches resumes to JDs, identifies skill gaps, and generates structured interview reports using Gemini API with Zod-validated outputs. Puppeteer-powered HTML-to-PDF generation pipeline. End-to-end system design — API, schema modeling, frontend integration, deployment.',
     stack: ['Node.js', 'Express', 'MongoDB', 'React', 'Gemini API', 'Puppeteer', 'Zod'],
@@ -69,7 +69,7 @@ export const PROJECTS = [
   {
     type: 'Mobile · React Native',
     name: 'Recurrly – Subscription Manager',
-    link: { label: 'GitHub ↗', href: '#' },
+    link: { label: 'GitHub ↗', href: 'https://github.com/Namitjoshii/react-native-recurrly', target: '_blank' },
     desc: 'Cross-platform subscription manager built in React Native + TypeScript with file-based navigation, Clerk authentication, and state-driven recurring payment UI. PostHog for real-time analytics. Shipped production APK and AAB via EAS — independent deployment, start to finish.',
     stack: ['React Native', 'TypeScript', 'Expo', 'Clerk', 'PostHog', 'EAS'],
   },
